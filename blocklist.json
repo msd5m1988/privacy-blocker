@@ -1,0 +1,25 @@
+{
+  "note": "隐私拦截 v1.4 的拦截库示例。把这个文件放到 GitHub 公开仓库里，在 App 里点“更新拦截库”，填这个文件的 Raw 链接就行。以后有新发现的包，直接在 GitHub 上改这个文件，手机上点更新，不用重新编 App。action 只认 block，不认的跳过；小米云、手机管家、高通 systemhelper 在 App 的保留名单里，就算写进来也会被跳过，绝不拦。",
+  "packages": [
+    {
+      "action": "block",
+      "desc": "HyperOS 3 新增的系统质量检测，每天向小米传约 100KB 诊断数据。拦了没影响。",
+      "name": "系统质量检测",
+      "package": "com.miui.misightservice"
+    },
+    {
+      "action": "block",
+      "desc": "开发者用的进程追踪，普通用户用不上。拦了没影响。",
+      "name": "系统追踪工具",
+      "package": "com.android.traceur"
+    },
+    {
+      "action": "block",
+      "desc": "和 systemAdSolution 是同一个功能的不同包名。国行手机上大概率没有，没有就跳过。",
+      "name": "系统广告（海外版）",
+      "package": "com.miui.msa.global"
+    }
+  ],
+  "updated": "2026-11-09",
+  "version": 1
+}

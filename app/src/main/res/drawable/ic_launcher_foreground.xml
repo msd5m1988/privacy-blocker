@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- 盾牌轮廓：白线，深青绿底上很显眼 -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M54,10 L86,22 V52 C86,74 72,90 54,98 C36,90 22,74 22,52 V22 Z"
+        android:strokeWidth="6"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <!-- 对勾 -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M40,54 L50,64 L70,42"
+        android:strokeWidth="6"
+        android:strokeColor="#FFFFFF"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>
