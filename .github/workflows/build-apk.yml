@@ -32,7 +32,7 @@ jobs:
           java-version: "17"
 
       - name: 装 Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
 
       - name: 给 gradlew 加执行权限
         run: chmod +x gradlew
