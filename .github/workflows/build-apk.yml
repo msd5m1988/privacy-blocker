@@ -1,0 +1,48 @@
+# 隐私拦截 v1.4 —— GitHub Actions 自动编译
+# 用法：把这个文件放到仓库的 .github/workflows/build-apk.yml，
+# 再把整个 privacy-blocker-app 项目推到同一个仓库，推上去就自动编。
+# 编完在 GitHub 仓库页面点 Actions → 最新那次运行 → Artifacts 里下载 app-debug.apk。
+# 不用把 GitHub 账号密码给任何人，也不用在电脑上装 Android Studio。
+
+name: Build APK
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 取代码
+        uses: actions/checkout@v4
+
+      # 项目里带的 local.properties 写的是 Windows 电脑上的 SDK 位置，
+      # GitHub 的电脑上没有那个位置，会报 SDK location not found。
+      # 先删掉它，让下面那步装的 SDK 生效。删的只是 GitHub 电脑上的
+      # 临时一份，你电脑上的文件不动。
+      - name: 删掉 Windows 的 local.properties
+        run: rm -f local.properties
+
+      - name: 装 Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: 装 Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: 给 gradlew 加执行权限
+        run: chmod +x gradlew
+
+      - name: 编 APK
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: 保存 APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: privacy-blocker-v1.4.1-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 30
